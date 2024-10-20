@@ -48,15 +48,15 @@ interface ModalProps { // props에 대한 인터페이스 정의
 }
 
 function Modal(props: ModalProps) {
-  return (
-          <div style={{background: props.color}}>
-                <div key={i}>
-                  <h4>{props.title[i]}</h4>
-                  <p>날짜</p>
-                  <p>{props.good[i]}</p>
-                  <p>상세내용</p>
-                </div>
-          </div>
-  )
+  // return (
+  //         <div style={{background: props.color}}>
+  //               <div key={i}>
+  //                 <h4>{props.title[i]}</h4>
+  //                 <p>날짜</p>
+  //                 <p>{props.good[i]}</p>
+  //                 <p>상세내용</p>
+  //               </div>
+  //         </div>
+  // )
 }
 export default App;
