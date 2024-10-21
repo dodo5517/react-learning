@@ -6,6 +6,7 @@ function App() {
   let [title, setTitle] = useState<string[]>(['남자코트 추천', '여자코트 추천','맛집'])
   let [good, setGood] = useState([title.length].fill(0));
   let [modal,setmodal] = useState(false);
+  let [select, setselect] = useState<number>(0);
 
   return (
       <div className="App">
@@ -20,7 +21,8 @@ function App() {
             return (
                 <div className="list" key={i}>
                   <h4 onClick={()=>{
-                    modal == false ? setmodal(true):setmodal(false);}
+                    modal == false ? setmodal(true):setmodal(false);
+                    setselect(i);}
                   }>{title[i]} </h4>
                   <span onClick={()=>{
                     let copyGood = [...good]; //state 변경할거니까 copy함.
@@ -33,7 +35,7 @@ function App() {
         }
 
         {
-          modal == true ? <Modal color = "yellow" title = {title} 글제목변경 = {setTitle} good = {good}/> : null
+          modal == true ? <Modal  select = {select} color = "yellow" title = {title} setTitle = {setTitle} good = {good}/> : null
         }
 
       </div>
@@ -41,22 +43,22 @@ function App() {
 }
 
 interface ModalProps { // props에 대한 인터페이스 정의
+    select: number;
     title: string[]; // 문자열 배열
     setTitle: React.Dispatch<React.SetStateAction<string[]>>; //typeScript에서 상태변형 함수의 데이터 타입.
-  good: number[]; // 정수형 배열
-  color: string;
+    good: number[]; // 정수형 배열
+    color: string;
 }
 
 function Modal(props: ModalProps) {
   return (
-          <div style={{background: props.color}}>
-                <div key={i}>
-                  <h4>{props.title[i]}</h4>
+          <div style={{background: props.color}} key={props.select}>
+                  <h4>{props.title[props.select]}</h4>
                   <p>날짜</p>
-                  <p>{props.good[i]}</p>
+                  <p>{props.good[props.select]}</p>
                   <p>상세내용</p>
-                </div>
           </div>
   )
 }
+
 export default App;
