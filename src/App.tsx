@@ -17,13 +17,13 @@ function App() {
         }}>가나다정렬</button>
 
         {
-            title.map(function(a,i){
+            title.map(function(_,i){ //사용하지 않는 파라미터는 _으로 표시함.
             return (
                 //작업관리자 화면에서는 왜 key가 안 보이지..?
                 <div className="list" key={i}>
                   <h4 onClick={()=>{
-                    modal == false ? setmodal(true):setmodal(false);
-                    setselect(i);}
+                      setmodal(!modal); //modal === false ? setmodal(true):setmodal(false);을 간결하게 적을 수 있음.
+                      setselect(i);}
                   }>{title[i]} </h4>
                   <span onClick={()=>{
                     let copyGood = [...good]; //state 변경할거니까 copy함.
@@ -36,7 +36,9 @@ function App() {
         }
 
         {
-          modal == true ? <Modal  select = {select} color = "yellow" title = {title} setTitle = {setTitle} good = {good}/> : null
+            modal && <Modal select={select} color="yellow" title={title} setTitle={setTitle} good={good}></Modal>
+            //어차피 true일 때만 실행하고 modal은 자체가 true/false이기 때문에 밑의 코드를 &&연산자를 사용하도록 수정함.
+            //modal === true ? <Modal  select = {select} color = "yellow" title = {title} setTitle = {setTitle} good = {good}/> : null
         }
 
       </div>
