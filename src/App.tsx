@@ -4,7 +4,7 @@ import './App.css';
 function App() {
 
   let [title, setTitle] = useState<string[]>(['남자코트 추천', '여자코트 추천','맛집'])
-  let [good, setGood] = useState([title.length].fill(0));
+  let [good, setGood] = useState(new Array(title.length).fill(0)); //[title.length].fill(0) 이렇게 하면 그냥 [3].(0)과 같음.
   let [modal,setmodal] = useState(false);
   let [select, setselect] = useState<number>(0);
 
@@ -19,6 +19,7 @@ function App() {
         {
             title.map(function(a,i){
             return (
+                //작업관리자 화면에서는 왜 key가 안 보이지..?
                 <div className="list" key={i}>
                   <h4 onClick={()=>{
                     modal == false ? setmodal(true):setmodal(false);
